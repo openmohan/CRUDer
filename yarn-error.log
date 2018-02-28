@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add webpack-dev-server --save
+  /usr/local/bin/node /usr/local/bin/yarn remove webpack
 
 PATH: 
   /home/mohan/anaconda3/bin:/home/mohan/bin:/home/mohan/.local/bin:/home/mohan/bin:/home/mohan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin
@@ -23,8 +23,8 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "dev": "NODE_PATH=./lib pm2 start lib/server.js --watch --interpreter babel-node",
-      "webpack": "webpack -wd",
-      "webpack-run": "webpack-dev-server --port 8099 --host 0.0.0.0 --hot",
+      "webpack": "webpack -wd --mode development",
+      "webpack-run": "./node_modules/.bin/webpack-dev-server --port 8099 --host 0.0.0.0 --config webpackdev.config.js --mode development --hot",
       "test": "jest --watch"
     },
     "babel": {
@@ -58,7 +58,6 @@ npm manifest:
       "pm2": "^2.9.3",
       "react": "^16.2.0",
       "react-dom": "^16.2.0",
-      "webpack": "^3.10.0",
     }
   }
 
@@ -5813,6 +5812,10 @@ Lockfile:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   
+  qs@^5.2.0:
+    version "5.2.1"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+  
   qs@~6.4.0:
     version "6.4.0"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -7400,7 +7403,13 @@ Lockfile:
       yargs "9.0.1"
       yeoman-environment "^2.0.0"
   
-  webpack-dev-middleware@2.0.6, webpack-dev-middleware@^2.0.6:
+  webpack-combine-loaders@^2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/webpack-combine-loaders/-/webpack-combine-loaders-2.0.3.tgz#53a14a748fe998349f46eb22f078be23d9fd73e0"
+    dependencies:
+      qs "^5.2.0"
+  
+  webpack-dev-middleware@2.0.6:
     version "2.0.6"
     resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-2.0.6.tgz#a51692801e8310844ef3e3790e1eacfe52326fd4"
     dependencies:
@@ -7491,7 +7500,7 @@ Lockfile:
       source-list-map "^2.0.0"
       source-map "~0.6.1"
   
-  webpack@^3.11.0:
+  webpack@^3.10.0:
     version "3.11.0"
     resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.11.0.tgz#77da451b1d7b4b117adaf41a1a93b5742f24d894"
     dependencies:
@@ -7769,7 +7778,7 @@ Lockfile:
       untildify "^3.0.2"
 
 Trace: 
-  SyntaxError: /home/mohan/mohanReactWorkspace/CRUDer/package.json: Unexpected token } in JSON at position 1199
+  SyntaxError: /home/mohan/mohanReactWorkspace/CRUDer/package.json: Unexpected token } in JSON at position 1261
       at JSON.parse (<anonymous>)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:770:59
       at Generator.next (<anonymous>)

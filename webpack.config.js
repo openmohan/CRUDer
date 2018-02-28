@@ -1,23 +1,33 @@
+var webpack = require('webpack');
+var path = require('path');
 
-const path = require('path');
+var BUILD_DIR = path.resolve(__dirname, 'public');
+var APP_DIR = path.resolve(__dirname, 'lib');
 
-const config = {
-  resolve : {
-    modules: [
-      path.resolve('./lib'),
-      path.resolve('./node_modules')
-    ]
-  },
-  entry: ['babel-polyfill','./lib/components/renderers/dom.js'],
+var config = {
+  entry: APP_DIR + '/components/renderers/dom.js',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: BUILD_DIR,
     filename: 'bundle.js'
   },
-  module: {
-    rules: [
-      { test: /\.js$/, exclude : /node_modules/ ,use: 'babel-loader' }
-    ]
-  }
+  resolve : {
+  modules: [
+    path.resolve('./lib'),
+    path.resolve('./node_modules')
+  ]
+},
+devServer: {
+  historyApiFallback: true,
+},
+  module : {
+  rules : [
+    {
+      test : /\.jsx?/,
+      include : APP_DIR,
+      use : 'babel-loader'
+    }
+  ]
+}
 };
 
 module.exports = config;
