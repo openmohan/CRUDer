@@ -1,33 +1,34 @@
-var webpack = require('webpack');
-var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'public');
-var APP_DIR = path.resolve(__dirname, 'lib');
 
-var config = {
-  entry: APP_DIR + '/components/renderers/dom.js',
-  output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
-  },
+const path = require('path');
+
+module.exports = {
   resolve : {
-  modules: [
-    path.resolve('./lib'),
-    path.resolve('./node_modules')
-  ]
-},
-devServer: {
-  historyApiFallback: true,
-},
-  module : {
-  rules : [
-    {
-      test : /\.jsx?/,
-      include : APP_DIR,
-      use : 'babel-loader'
-    }
-  ]
-}
-};
+    modules: [
+      path.resolve('./lib'),
+      path.resolve('./node_modules')
+    ]
+  },
+  devServer:{
+    historyApiFallback: true
 
-module.exports = config;
+  },
+    entry: './lib/components/renderers/dom.js',
+    output: {
+      path: path.resolve(__dirname, 'public'),
+      filename: 'bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            }
+        ]
+    }
+};
